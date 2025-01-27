@@ -1,11 +1,11 @@
-﻿using HR.LeaveManagement.Domain;
+﻿using HR.LeaveManagement.Application.DTOs.LeaveType;
 
 namespace HR.LeaveManagement.Application.DTOs.LeaveRequest
 {
     public class LeaveRequestListDTO : BaseDTO
     {
 
-        public LeaveType LeaveType { get; set; }
+        public LeaveTypeDTO LeaveType { get; set; }
         public DateTime DateRequested { get; set; }
         public bool? Approved { get; set; }
     }
