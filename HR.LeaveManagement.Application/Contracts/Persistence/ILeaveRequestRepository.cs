@@ -1,9 +1,9 @@
 ﻿using HR.LeaveManagement.Application.DTOs.LeaveRequest;
 using HR.LeaveManagement.Domain;
 
-namespace HR.LeaveManagement.Application.Persistense.Contracts
+namespace HR.LeaveManagement.Application.Contracts.Persistence
 {
-    public interface ILeaveRequestRepository : IGenericRespository<LeaveRequest>
+    public interface ILeaveRequestRepository : IGenericRepository<LeaveRequest>
     {
         public Task ChangeApprovalStatus(LeaveRequest leaveRequest, bool? ApprovalStatus);
         public Task<List<LeaveRequestListDTO>> GetLeaveRequestWithDetails();

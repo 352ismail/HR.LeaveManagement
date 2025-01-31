@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using HR.LeaveManagement.Application.Persistense.Contracts;
+using HR.LeaveManagement.Application.Contracts.Persistence;
 
 namespace HR.LeaveManagement.Application.DTOs.LeaveRequest.Validator
 {
