@@ -1,6 +1,6 @@
 ﻿namespace HR.LeaveManagement.Application.DTOs.LeaveRequest
 {
-    public class UpdateLeaveRequestDTO : BaseDTO, ILeaveRequestDTO
+    public class UpdateLeaveRequestDTO : ILeaveRequestDTO
     {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
