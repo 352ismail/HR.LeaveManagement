@@ -1,5 +1,6 @@
 ﻿using HR.LeaveManagement.Application.Contracts.Infrastructure;
 using HR.LeaveManagement.Application.Model;
+using Microsoft.Extensions.Options;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 
@@ -9,9 +10,9 @@ namespace HR.LeaveManagement.Infrastructure.Mail
     {
         private readonly EmailSettings emailSettings;
 
-        public EmailSender(EmailSettings emailSettings)
+        public EmailSender(IOptions<EmailSettings> emailSettings)
         {
-            this.emailSettings = emailSettings;
+            this.emailSettings = emailSettings.Value;
         }
 
         public async Task<bool> SendEmail(Email email)
