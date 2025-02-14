@@ -8,17 +8,17 @@ namespace HR.LeaveManagement.Application.Features.LeaveTypes.Handlers.Queries
 {
     public class GetLeaveTypeListRequestHandler : IRequestHandler<GetLeaveTypeListRequest, List<LeaveTypeDTO>>
     {
-        private readonly ILeaveRequestRepository leaveRequestRepository;
+        private readonly ILeaveTypeRepository leaveTypeRepository;
         private readonly IMapper mapper;
 
-        public GetLeaveTypeListRequestHandler(ILeaveRequestRepository leaveRequestRepository, IMapper mapper)
+        public GetLeaveTypeListRequestHandler(ILeaveTypeRepository leaveTypeRepository, IMapper mapper)
         {
-            this.leaveRequestRepository = leaveRequestRepository;
+            this.leaveTypeRepository = leaveTypeRepository;
             this.mapper = mapper;
         }
         public async Task<List<LeaveTypeDTO>> Handle(GetLeaveTypeListRequest request, CancellationToken cancellationToken)
         {
-            var leaveTypes = await leaveRequestRepository.GetAll();
+            var leaveTypes = await leaveTypeRepository.GetAll();
             return mapper.Map<List<LeaveTypeDTO>>(leaveTypes);
 
         }

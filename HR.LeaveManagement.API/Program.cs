@@ -1,4 +1,5 @@
 using HR.LeaveManagement.Application;
+using HR.LeaveManagement.Application.Features.LeaveTypes.Handlers.Queries;
 using HR.LeaveManagement.Infrastructure;
 using HR.LeaveManagement.Persistense;
 
@@ -8,6 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.ConfigureApplicationServices();
 builder.Services.ConfigurePersistenceServices(builder.Configuration);
 builder.Services.ConfigureInfrastructureServices(builder.Configuration);
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssembly(typeof(GetLeaveTypeListRequestHandler).Assembly)
+);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
