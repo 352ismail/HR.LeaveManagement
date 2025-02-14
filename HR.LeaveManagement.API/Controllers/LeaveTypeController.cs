@@ -23,7 +23,7 @@ namespace HR.LeaveManagement.API.Controllers
             return Ok(leaveType);
         }
         [HttpGet]
-        public async Task<ActionResult<List<LeaveTypeDTO>>> Get()
+        public async Task<ActionResult<BaseCommandResponse<List<LeaveTypeDTO>>>> Get()
         {
             var leaveType = await mediator.Send(new GetLeaveTypeListRequest());
             return Ok(leaveType);
@@ -36,17 +36,17 @@ namespace HR.LeaveManagement.API.Controllers
             return Ok(leaveType);
         }
         [HttpPut]
-        public async Task<ActionResult> Put([FromBody] UpdateLeaveTypeDTO updateLeaveTypeDTO)
+        public async Task<ActionResult<BaseCommandResponse<LeaveTypeDTO>>> Put([FromBody] UpdateLeaveTypeDTO updateLeaveTypeDTO)
         {
-            var leaveType = mediator.Send(new UpdateLeaveTypeCommand
+            var leaveType = await mediator.Send(new UpdateLeaveTypeCommand
             { UpdateLeaveTypeDTO = updateLeaveTypeDTO });
-            return NoContent();
+            return Ok(leaveType);
         }
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult<BaseCommandResponse<string>>> Delete(int id)
         {
-            var leaveType = mediator.Send(new DeleteLeaveTypeCommand { Id = id });
-            return NoContent();
+            var leaveType = await mediator.Send(new DeleteLeaveTypeCommand { Id = id });
+            return Ok(leaveType);
         }
     }
 }

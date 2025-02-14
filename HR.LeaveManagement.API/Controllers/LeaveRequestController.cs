@@ -18,14 +18,14 @@ namespace HR.LeaveManagement.API.Controllers
             this.mediator = mediator;
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<LeaveRequestDTO>> Get(int id)
+        public async Task<ActionResult<BaseCommandResponse<LeaveRequestDTO>>> Get(int id)
         {
             var leaveRequest = await mediator.Send(new GetLeaveRequestDetailRequest { Id = id });
             return Ok(leaveRequest);
 
         }
         [HttpGet]
-        public async Task<ActionResult<List<LeaveRequestListDTO>>> Get()
+        public async Task<ActionResult<BaseCommandResponse<List<LeaveRequestDTO>>>> Get()
         {
             var leaveRequest = await mediator.Send(new GetLeaveRequestListRequest());
             return Ok(leaveRequest);
@@ -38,24 +38,24 @@ namespace HR.LeaveManagement.API.Controllers
             return Ok(leaveRequest);
         }
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] UpdateLeaveRequestDTO updateLeaveRequestDTO)
+        public async Task<ActionResult<BaseCommandResponse<LeaveRequestDTO>>> Put(int id, [FromBody] UpdateLeaveRequestDTO updateLeaveRequestDTO)
         {
-            var leaveRequest = mediator.Send(new UpdateLeaveRequestCommand
+            var leaveRequest = await mediator.Send(new UpdateLeaveRequestCommand
             { Id = id, UpdateLeaveRequestDTO = updateLeaveRequestDTO });
-            return NoContent();
+            return Ok(leaveRequest);
         }
         [HttpPut("ChangeApproval/{id}")]
         public async Task<ActionResult> changeApproval(int id, [FromBody] ChangeLeaveRequestApprovalDTO changeLeaveRequestApprovalDTO)
         {
-            var leaveRequest = mediator.Send(new UpdateLeaveRequestCommand
+            var leaveRequest = await mediator.Send(new UpdateLeaveRequestCommand
             { Id = id, ChangeLeaveRequestApprovalDTO = changeLeaveRequestApprovalDTO });
-            return NoContent();
+            return Ok(leaveRequest);
         }
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult<BaseCommandResponse<string>>> Delete(int id)
         {
-            var leaveRequest = mediator.Send(new DeleteLeaveRequestCommand { Id = id });
-            return NoContent();
+            var leaveRequest = await mediator.Send(new DeleteLeaveRequestCommand { Id = id });
+            return Ok(leaveRequest);
         }
     }
 }

@@ -16,6 +16,11 @@ namespace HR.LeaveManagement.Application.Profiles
                 .ForMember(dest => dest.LeaveType, q => q.MapFrom(src => src.LeaveType))
                 .ReverseMap();
             CreateMap<LeaveAllocation, LeaveAllocationDTO>().ReverseMap();
+            CreateMap<CreateLeaveAllocationDTO, LeaveAllocation>().ReverseMap();
+            CreateMap<CreateLeaveRequestDTO, LeaveRequest>().ReverseMap();
+            CreateMap<UpdateLeaveAllocationDTO, LeaveAllocation>().ReverseMap();
+            CreateMap<UpdateLeaveRequestDTO, LeaveRequest>().ReverseMap();
+            CreateMap<UpdateLeaveTypeDTO, LeaveType>().ReverseMap();
         }
     }
 }

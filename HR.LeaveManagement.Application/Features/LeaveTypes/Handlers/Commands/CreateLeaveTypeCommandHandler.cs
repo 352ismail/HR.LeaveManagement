@@ -39,7 +39,7 @@ namespace HR.LeaveManagement.Application.Features.LeaveTypes.Handlers.Commands
             return new BaseCommandResponse<LeaveTypeDTO>()
             {
                 Success = true,
-                Message = "Creation Successful",
+                Message = "Success",
                 Data = mapper.Map<LeaveTypeDTO>(leaveType)
             };
         }

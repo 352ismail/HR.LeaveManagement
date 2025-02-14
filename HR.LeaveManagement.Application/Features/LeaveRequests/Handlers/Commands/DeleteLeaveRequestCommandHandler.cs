@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using HR.LeaveManagement.Application.Contracts.Persistence;
-using HR.LeaveManagement.Application.Exceptions;
 using HR.LeaveManagement.Application.Features.LeaveRequests.Requests.Commands;
+using HR.LeaveManagement.Application.Responses;
 using MediatR;
 
 namespace HR.LeaveManagement.Application.Features.LeaveRequests.Handlers.Commands
 {
-    public class DeleteLeaveRequestCommandHandler : IRequestHandler<DeleteLeaveRequestCommand, Unit>
+    public class DeleteLeaveRequestCommandHandler : IRequestHandler<DeleteLeaveRequestCommand, BaseCommandResponse<string>>
     {
         private readonly ILeaveRequestRepository leaveRequestRepository;
         private readonly IMapper mapper;
@@ -16,15 +16,24 @@ namespace HR.LeaveManagement.Application.Features.LeaveRequests.Handlers.Command
             this.leaveRequestRepository = leaveRequestRepository;
             this.mapper = mapper;
         }
-        public async Task<Unit> Handle(DeleteLeaveRequestCommand request, CancellationToken cancellationToken)
+        public async Task<BaseCommandResponse<string>> Handle(DeleteLeaveRequestCommand request, CancellationToken cancellationToken)
         {
             var leaveRequest = await leaveRequestRepository.Get(request.Id);
             if (leaveRequest is null)
             {
-                throw new NotFoundException(nameof(leaveRequest), request.Id);
+                return new BaseCommandResponse<string>()
+                {
+                    Success = false,
+                    Message = "Record Not found",
+                };
             }
             await leaveRequestRepository.Delete(leaveRequest);
-            return Unit.Value;
+            return new BaseCommandResponse<string>()
+            {
+                Success = true,
+                Message = "Success",
+            };
+
         }
     }
 }
