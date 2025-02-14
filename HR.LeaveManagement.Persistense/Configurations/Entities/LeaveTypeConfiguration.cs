@@ -13,31 +13,43 @@ namespace HR.LeaveManagement.Persistense.Configurations.Entities
              {
                  Id = 1,
                  Name = "Vacation",
-                 DefaultDays = 10
+                 DefaultDays = 10,
+                 CreatedBy = "System",
+                 LastModifiedBy = "System",
+
+
              },
             new LeaveType
             {
                 Id = 2,
                 Name = "Sick Leave",
-                DefaultDays = 5
+                DefaultDays = 5,
+                CreatedBy = "System",
+                LastModifiedBy = "System",
             },
             new LeaveType
             {
                 Id = 3,
                 Name = "Maternity Leave",
-                DefaultDays = 90
+                DefaultDays = 90,
+                CreatedBy = "System",
+                LastModifiedBy = "System",
             },
             new LeaveType
             {
                 Id = 4,
                 Name = "Paternity Leave",
-                DefaultDays = 14
+                DefaultDays = 14,
+                CreatedBy = "System",
+                LastModifiedBy = "System",
             },
             new LeaveType
             {
                 Id = 5,
                 Name = "Unpaid Leave",
-                DefaultDays = 0
+                DefaultDays = 0,
+                CreatedBy = "System",
+                LastModifiedBy = "System",
             });
         }
     }
